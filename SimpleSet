@@ -1,0 +1,92 @@
+package set;
+
+import java.util.Arrays;
+
+public class SimpleSet <E> implements Set <E>{
+
+    private E [] elements;
+    private int size;
+    private int capacity;
+
+    public SimpleSet(int capacity)
+    {
+        this.elements = (E[]) new Object[capacity];
+        this.size = 0;
+        this.capacity = capacity;
+    }
+
+    public SimpleSet()
+    {
+        this.elements = (E[]) new Object[5];
+        this.size = 0;
+        this.capacity = 5;
+    }
+
+    public void add(E e) {
+
+        if (!contains(e))
+        {
+            if (this.size >= this.capacity)
+            {
+                this.capacity +=5;
+                E[] newElements = (E[]) new Object[capacity];
+                for (int i = 0; i < this.elements.length; i++)
+                {
+                    newElements[i] = this.elements[i];
+                }
+                this.elements = newElements;
+            }
+            this.elements[size++] = e;
+
+
+        }
+    }
+
+    public boolean remove(E e)
+    {
+        if (!contains(e))
+            return false;
+        else
+        {
+         for (int i = 0; i < this.elements.length; i++)
+         {
+             if (this.elements[i] == e && (i+1) != size)
+             {
+                 elements[i] = elements[i+1];
+             }
+             if (i == size)
+             {
+                 elements[size] = null;
+                 size --;
+                 break;
+             }
+         }
+        }
+        return true;
+    }
+
+    public boolean contains(E e)
+    {
+        for (E element : this.elements)
+        {
+            if (element == e)
+                return true;
+        }
+        return false;
+    }
+
+    public  int size()
+    {
+        return size;
+    }
+
+    public boolean isEmpty()
+    {
+       return this.size == 0;
+    }
+
+    @Override
+    public String toString() {
+        return  Arrays.toString(elements);
+    }
+}
