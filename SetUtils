@@ -1,0 +1,57 @@
+package set;
+
+import java.util.Set;
+
+public class SetUtils {
+
+    public static <E> Set<E> union(Set<E> elements1, Set<E> elements2) {
+
+        Set <E> unionElements = (Set<E>) new SimpleSet<>();
+        for (E element : elements1) {
+            unionElements.add(element);
+        }
+        for (E element : elements2) {
+            unionElements.add(element);
+        }
+        return unionElements;
+    }
+
+    public static <E> SimpleSet <E> intersection (Set <E> elements1, Set <E> elements2) {
+
+        SimpleSet <E> intersectionElements = new SimpleSet <E> ();
+
+        for (E element : elements1)
+        {
+            if (elements2.contains(element))
+                intersectionElements.add(element);
+        }
+        return intersectionElements;
+    }
+
+    public static <E> SimpleSet <E> difference (Set <E> elements1, Set <E> elements2) {
+
+        SimpleSet<E> differenceElements = new SimpleSet<E>();
+
+        for (E element : elements1)
+        {
+            if (!elements2.contains(element))
+                differenceElements.add(element);
+        }
+        return differenceElements;
+    }
+
+    public static <E> SimpleSet <E> symmetricDifference (Set <E> elements1, Set <E> elements2) {
+
+        SimpleSet<E> symmetricDifferenceElements = new SimpleSet<E>();
+
+        for (E element : elements1)
+            if (!elements2.contains(element))
+                symmetricDifferenceElements.add(element);
+
+        for (E element : elements2)
+            if (!elements1.contains(element))
+                symmetricDifferenceElements.add(element);
+
+        return symmetricDifferenceElements;
+    }
+}
