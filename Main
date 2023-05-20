@@ -1,0 +1,24 @@
+package set;
+
+import java.util.Set;
+
+public class Main {
+    public static void main(String[] args) {
+
+        SimpleSet <Integer> setA = new SimpleSet<>();
+        SimpleSet <Integer> setB = new SimpleSet<>();
+
+        setA.add(1);
+        setA.add(2);
+        setA.add(3);
+        setB.add(3);
+        setB.add(4);
+        setB.add(5);
+
+        System.out.println("Set A: " + setA);
+        System.out.println("Set B: " + setB);
+
+        SimpleSet <Integer> union = (SimpleSet<Integer>) SetUtils.union((Set<Integer>) setA,(Set<Integer>) setB);
+        System.out.println("Intersection: " + union);
+    }
+}
